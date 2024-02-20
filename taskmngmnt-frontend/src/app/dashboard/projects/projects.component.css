@@ -1,27 +1,27 @@
-.group-table {
+.project-table {
     width: 100%;
     border-collapse: collapse;
   }
   
-  .group-table th, .group-table td {
+  .project-table th, .project-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
   }
   
-  .group-table th {
+  .project-table th {
     background-color: #f2f2f2;
   }
   
-  .group-table tbody tr:nth-child(even) {
+  .project-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
   
-  .group-table tbody tr:hover {
+  .project-table tbody tr:hover {
     background-color: #ddd;
   }
   
-  .group-table button {
+  .project-table button {
     padding: 6px 12px;
     border: none;
     background-color: #007bff;
@@ -29,9 +29,6 @@
     cursor: pointer;
   }
   
-  .group-table button:hover {
+  .project-table button:hover {
     background-color: #0056b3;
   }
-
-
-  

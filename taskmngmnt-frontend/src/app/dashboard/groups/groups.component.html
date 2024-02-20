@@ -1,15 +1,29 @@
-<div *ngIf="groups.length > 0; else loading">
-  <h2>Group Details</h2>
-  <ul>
-    <li *ngFor="let group of groups">
-      <p>Group Id : {{ group.groupId }}</p>
-      <p>Name: {{ group.groupName }}</p>
+<div class="groups-container">
+  <h2>Groups</h2>
 
-      <!-- Add more details as needed -->
-    </li>
-  </ul>
+  <table class="group-table">
+    <thead>
+      <tr>
+        <th>Group ID</th>
+        <th>Group Name</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="groups.length > 0; else loading">
+      <tr *ngFor="let group of groups">
+        <td>{{ group.groupId }}</td>
+        <td>
+          <!-- Add a link to the group name -->
+          <a [routerLink]="['/groups', group.groupId, 'projects']">{{
+            group.groupName
+          }}</a>
+          <!-- Add a symbol to the right side of the group name -->
+        </td>
+        <td>{{ group.createdAt | date : "medium" }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <ng-template #loading>
   <p>Loading group details...</p>
 </ng-template>

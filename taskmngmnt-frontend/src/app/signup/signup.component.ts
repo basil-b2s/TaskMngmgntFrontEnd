@@ -7,6 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiCallService } from '../services/api-call.service';
+import { AuthService } from '../services/auth.service';
+import { Signup } from '../interfaces/signup';
 
 @Component({
   selector: 'app-signup',
@@ -20,36 +23,54 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private apiService: ApiCallService,
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
-    console.log('joo');
     this.signupForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      name: ['', [Validators.required]],
-      groupName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(20),
+        ],
+      ],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      groupName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      referralCode: [''],
     });
   }
 
   public signup(): void {
     console.log('hiii');
     if (this.signupForm.valid) {
-      const userSignupData = this.signupForm.value;
-
-      this.http
-        .post('https://localhost:7197/api/signup', userSignupData, {
-          responseType: 'text',
-        })
-        .subscribe(
-          (res) => {
-            console.log('Account Created Successfully', res);
-            this.router.navigate(['/login']);
-          },
-          (error) => {
-            console.error('ERror occured', error);
-          }
-        );
+      const userSignupData: Signup = this.signupForm.value;
+      this.authService.signup(userSignupData).subscribe(
+        (res) => {
+          console.log('Account Created Successfully', res);
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.error('ERror occured', error);
+        }
+      );
     }
   }
 }

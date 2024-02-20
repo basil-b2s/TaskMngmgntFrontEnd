@@ -3,11 +3,25 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GroupsComponent } from './dashboard/groups/groups.component';
+import { ProjectsComponent } from './dashboard/projects/projects.component';
+import { AuthGuard } from './guard/auth.guard';
+import { LoginGuard } from './guard/login.guard';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'groups',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: GroupsComponent },
+      { path: ':groupId/projects', component: ProjectsComponent },
+    ],
+  },
+  { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({

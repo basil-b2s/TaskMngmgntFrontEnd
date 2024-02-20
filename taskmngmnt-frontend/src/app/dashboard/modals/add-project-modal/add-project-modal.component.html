@@ -1,0 +1,38 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Add Project</h2>
+    <button class="close-btn" (click)="onCloseModal()">Close</button>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="projectName">Project Name</label>
+        <input type="text" formControlName="projectName" id="projectName" />
+        <!-- <div
+          *ngIf="
+            projectForm.controls.projectName.touched &&
+            projectForm.controls.projectName.errors?.required
+          "
+          class="error"
+        >
+          Project name is required
+        </div> -->
+      </div>
+      <div class="form-group">
+        <label for="projectDescription">Project Description</label>
+        <textarea
+          formControlName="projectDescription"
+          id="projectDescription"
+        ></textarea>
+        <!-- <div
+          *ngIf="
+            projectForm.controls.projectDescription.touched &&
+            projectForm.controls.projectDescription.errors?.required
+          "
+          class="error"
+        >
+          Project description is required
+        </div> -->
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>

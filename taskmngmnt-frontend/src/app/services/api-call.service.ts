@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiCallService {
   constructor(private http: HttpClient) {}
-
+  private baseUrl: string = '';
   post(url: string, data: any): Observable<any> {
     return this.http.post(url, data);
   }

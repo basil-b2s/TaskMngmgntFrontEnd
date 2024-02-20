@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiCallService } from '../api-call.service';
+import { ApiCallService } from '../services/api-call.service';
+import { AuthService } from '../services/auth.service';
+import { TokenService } from '../services/token.service';
+import { LoginStatusService } from '../services/login-status.service';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +21,14 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private apiService: ApiCallService
+    private authService: AuthService,
+    private tokenServie: TokenService,
+    private loginStatus: LoginStatusService
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -32,18 +37,18 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const userLoginData = this.loginForm.value;
 
-      this.apiService
-        .post('https://localhost:7197/api/login', userLoginData)
-        .subscribe(
-          (res) => {
-            console.log('Logged In', res);
-            localStorage.setItem('jwtToken', res);
-            this.router.navigate(['/dashboard']);
-          },
-          (error) => {
-            console.log('Error occured', error);
-          }
-        );
+      this.authService.login(userLoginData).subscribe(
+        (res) => {
+          console.log('Logged In', res);
+          this.tokenServie.setToken(res);
+          this.loginStatus.setLoginStatus(true);
+          this.router.navigate(['/groups']);
+        },
+        (error) => {
+          console.log('Error occured', error);
+          this.router.navigate(['/login']);
+        }
+      );
     }
   }
 }

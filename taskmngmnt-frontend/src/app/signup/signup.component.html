@@ -5,20 +5,108 @@
       <div>
         <label>Email:</label>
         <input type="email" formControlName="email" />
+        <div
+          *ngIf="
+            signupForm.controls['email'].touched &&
+            signupForm.controls['email'].invalid
+          "
+        >
+          <small
+            *ngIf="signupForm.controls['email']?.errors?.['required']"
+            class="validation-message"
+            >*Email is required.</small
+          >
+          <small
+            *ngIf="signupForm.controls['email']?.errors?.['email']"
+            class="validation-message"
+            >*Invalid Email format</small
+          >
+        </div>
       </div>
       <div>
         <label>Password:</label>
         <input type="password" formControlName="password" />
+        <div
+          *ngIf="
+            signupForm.controls['password'].touched &&
+            signupForm.controls['password'].invalid
+          "
+        >
+          <small
+            *ngIf="signupForm.controls['password']?.errors?.['required']"
+            class="validation-message"
+            >*Password is required.</small
+          >
+          <small
+            *ngIf="signupForm.controls['password']?.errors?.['maxlength']"
+            class="validation-message"
+            >*Password must be less than 20 characters long</small
+          >
+          <small
+            *ngIf="signupForm.controls['password']?.errors?.['minlength']"
+            class="validation-message"
+            >*Password must be greater than 6 characters long</small
+          >
+        </div>
       </div>
       <div>
         <label>Name:</label>
         <input type="text" formControlName="name" />
+        <div
+          *ngIf="
+            signupForm.controls['name'].touched &&
+            signupForm.controls['name'].invalid
+          "
+        >
+          <small
+            *ngIf="signupForm.controls['name']?.errors?.['required']"
+            class="validation-message"
+            >*Name is required.</small
+          >
+          <small
+            *ngIf="signupForm.controls['name']?.errors?.['maxlength']"
+            class="validation-message"
+            >*Name must be less than 20 characters long</small
+          >
+          <small
+            *ngIf="signupForm.controls['name']?.errors?.['minlength']"
+            class="validation-message"
+            >*Name must be greater than 3 characters long</small
+          >
+        </div>
       </div>
       <div>
         <label>Group Name:</label>
         <input type="text" formControlName="groupName" />
+        <div
+          *ngIf="
+            signupForm.controls['groupName'].touched &&
+            signupForm.controls['groupName'].invalid
+          "
+        >
+          <small
+            *ngIf="signupForm.controls['groupName']?.errors?.['required']"
+            class="validation-message"
+            >*Group Name is required.</small
+          >
+          <small
+            *ngIf="signupForm.controls['groupName']?.errors?.['maxlength']"
+            class="validation-message"
+            >*Group Name must be less than 20 characters long</small
+          >
+          <small
+            *ngIf="signupForm.controls['groupName']?.errors?.['minlength']"
+            class="validation-message"
+            >*Group Name must be greater than 3 characters long</small
+          >
+        </div>
+      </div>
+      <div>
+        <label>Refferral Code:</label>
+        <input type="text" formControlName="referralCode" />
       </div>
       <button type="submit">Sign Up</button>
     </form>
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
   </div>
 </div>
