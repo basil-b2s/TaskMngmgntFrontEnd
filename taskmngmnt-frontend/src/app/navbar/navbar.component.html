@@ -9,8 +9,6 @@
         <a routerLink="/signup">Signup</a>
       </li>
       <li *ngIf="isLoggedIn()">
-        <!-- <span>{{ getUsername() }}</span> -->
-        <!-- You can uncomment above line if you want to display username -->
         <a (click)="logout()">Logout</a>
       </li>
     </ul>

@@ -17,14 +17,4 @@ export class TokenService {
   clearToken(): void {
     localStorage.removeItem('jwtToken');
   }
-
-  // getUserFromToken(): string | null {
-  //   const token = this.getToken();
-  //   if (token) {
-  //     const decodedToken: any = jwtDecode(token);
-  //     return decodedToken.username;
-  //   } else {
-  //     return null;
-  //   }
-  // }
 }

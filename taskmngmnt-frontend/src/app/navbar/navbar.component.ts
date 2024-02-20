@@ -13,15 +13,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn(); // Implement this method in AuthService to check if the user is logged in
+    return this.authService.isLoggedIn();
   }
 
-  // getUsername(): string {
-  //   return this.authService.getUsername(); // Implement this method in AuthService to get the username
-  // }
-
   logout(): void {
-    this.authService.logout(); // Implement this method in AuthService to logout the user
-    this.router.navigate(['/login']); // Navigate to login page after logout
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -9,16 +9,15 @@
         <th>Project ID</th>
         <th>Project Name</th>
         <th>Project Description</th>
-        <th>Action</th>
+        <th>Owner ID</th>
       </tr>
     </thead>
-    <!-- <tbody *ngIf="projects.length > 0; else loading"> -->
     <tbody>
       <tr *ngFor="let project of projects">
         <td>{{ project.projectId }}</td>
         <td>{{ project.projectName }}</td>
         <td>{{ project.projectDescription }}</td>
-        <td><button>Projects</button></td>
+        <td>{{ project.ownerId }}</td>
       </tr>
     </tbody>
   </table>
@@ -26,8 +25,4 @@
 <app-add-project-modal
   *ngIf="showAddProjectModal"
   (projectAdded)="addProject($event)"
-></app-add-project-modal
-><!-- <app-add-project-modal></app-add-project-modal> -->
-<!-- <ng-template #loading>
-  <p>No Projects to Show</p>
-</ng-template> -->
+></app-add-project-modal>

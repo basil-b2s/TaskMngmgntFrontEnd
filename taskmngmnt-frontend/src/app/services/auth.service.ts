@@ -15,8 +15,6 @@ export class AuthService {
     private loginStatus: LoginStatusService
   ) {}
 
-  //private baseUrl: string = '';
-
   login(userData: any): Observable<any> {
     this.loginStatus.setLoginStatus(true);
     return this.apiService.post(API_BASE_URL + 'login', userData);

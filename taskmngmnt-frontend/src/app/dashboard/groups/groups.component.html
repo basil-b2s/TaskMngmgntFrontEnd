@@ -13,11 +13,9 @@
       <tr *ngFor="let group of groups">
         <td>{{ group.groupId }}</td>
         <td>
-          <!-- Add a link to the group name -->
           <a [routerLink]="['/groups', group.groupId, 'projects']">{{
             group.groupName
           }}</a>
-          <!-- Add a symbol to the right side of the group name -->
         </td>
         <td>{{ group.createdAt | date : "medium" }}</td>
       </tr>

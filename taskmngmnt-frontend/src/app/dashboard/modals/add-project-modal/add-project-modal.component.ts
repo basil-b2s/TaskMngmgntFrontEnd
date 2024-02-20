@@ -9,27 +9,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddProjectModalComponent {
   @Output() projectAdded = new EventEmitter<any>();
   projectForm: FormGroup;
-  showAddProjectModal: boolean = false;
+
   constructor(private formBuilder: FormBuilder) {
     this.projectForm = this.formBuilder.group({
-      projectName: ['', Validators.required],
-      projectDescription: ['', Validators.required],
+      projectName: [''],
+      projectDescription: [''],
+      // projectName: ['', Validators.required],
+      // projectDescription: ['', Validators.required],
     });
   }
 
   onSubmit() {
     if (this.projectForm.valid) {
       const projectData = this.projectForm.value;
+      console.log(projectData);
       this.projectAdded.emit(projectData);
     }
   }
 
-  // closeModal() {
-  //   // this.projectAdded.emit(null);
-  //   this.showAddProjectModal = false;
-  // }
+
   onCloseModal() {
-    // Emit the closeModal event
-    this.projectAdded.emit();
+    this.projectAdded.emit(null);
   }
 }
