@@ -6,6 +6,7 @@ import { ApiCallService } from '../services/api-call.service';
 import { AuthService } from '../services/auth.service';
 import { TokenService } from '../services/token.service';
 import { LoginStatusService } from '../services/login-status.service';
+import { LoginDto } from '../interfaces/loginDto';
 
 @Component({
   selector: 'app-login',
@@ -32,10 +33,9 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
-
   public login(): void {
     if (this.loginForm.valid) {
-      const userLoginData = this.loginForm.value;
+      const userLoginData: LoginDto = this.loginForm.value;
 
       this.authService.login(userLoginData).subscribe(
         (res) => {
@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/groups']);
         },
         (error) => {
-          console.log('Error occured', error);
+          console.log('Error occurred', error);
+          this.loginStatus.setLoginStatus(false);
           this.router.navigate(['/login']);
         }
       );

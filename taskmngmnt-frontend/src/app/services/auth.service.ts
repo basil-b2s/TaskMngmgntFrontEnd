@@ -4,6 +4,8 @@ import { ApiCallService } from './api-call.service';
 import { TokenService } from './token.service';
 import { LoginStatusService } from './login-status.service';
 import { API_BASE_URL } from '../../config/api.config';
+import { LoginDto } from '../interfaces/loginDto';
+import { SignupDto } from '../interfaces/signupDto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,15 +17,15 @@ export class AuthService {
     private loginStatus: LoginStatusService
   ) {}
 
-  login(userData: any): Observable<any> {
-    this.loginStatus.setLoginStatus(true);
+  login(userData: LoginDto): Observable<any> {
+    
     return this.apiService.post(API_BASE_URL + 'login', userData);
   }
   logout(): void {
     this.loginStatus.setLoginStatus(false);
     this.tokenService.clearToken();
   }
-  signup(userData: any): Observable<any> {
+  signup(userData: SignupDto): Observable<any> {
     return this.apiService.post(API_BASE_URL + 'signup', userData);
   }
   isLoggedIn(): boolean {

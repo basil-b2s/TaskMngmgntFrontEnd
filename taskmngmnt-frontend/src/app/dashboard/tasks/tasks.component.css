@@ -1,0 +1,58 @@
+
+.tasks-container {
+    position: relative;
+  }
+  
+  .tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tasks-table th, .tasks-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .tasks-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .tasks-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .tasks-table tbody tr:hover {
+    background-color: #ddd;
+    }
+    
+    .tasks-table button {
+      padding: 6px 12px;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .tasks-table button:hover {
+      background-color: #0056b3;
+    }
+    
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .add-project-btn {
+      position: absolute;
+      top: 5px; 
+      right: 10px;
+  
+    }
+    .add-project-btn:hover {
+      background-color: #0056b3;
+    }

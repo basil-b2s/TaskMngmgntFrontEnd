@@ -29,9 +29,7 @@ export class authInterceptor implements HttpInterceptor {
             }
           } else if (req.url.includes('/api/login')) {
             if (event instanceof HttpResponse) {
-              this.toastr.success(
-                'Your account has been created... Please login in'
-              );
+              this.toastr.success('Successfully Signed In');
             }
           }
         }),

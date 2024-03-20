@@ -1,0 +1,69 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Add Task</h2>
+  
+
+    <button class="close-btn" (click)="onCloseModal()">Close</button>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="taskDescription">Task Description</label>
+        <input
+          type="text"
+          formControlName="description"
+          id="taskDescription"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <input
+          type="date"
+          formControlName="dueDate"
+          id="dueDate"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="assigneeMail">Assignee Email</label>
+        <input
+          type="email"
+          formControlName="assigneeMail"
+          id="assigneeMail"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="currentStatusId">Current Status</label>
+        <div class="custom-dropdown">
+          <select
+            formControlName="currentStatusId"
+            id="currentStatusId"
+            class="form-control"
+          >
+            <optgroup label="Status">
+              <option
+                *ngFor="let status of statusData"
+                [value]="status.projectTaskStatusId"
+              >
+                {{ status.statusText }}
+              </option>
+            </optgroup>
+          </select>
+          <button
+            type="button"
+            class="add-status-btn"
+            (click)="openAddStatusModal()"
+          >
+            Add Status
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+<app-add-task-status-modal
+  *ngIf="showAddTaskStatusModal"
+  (taskStatusAdded)="addTaskStatus($event)"
+></app-add-task-status-modal>

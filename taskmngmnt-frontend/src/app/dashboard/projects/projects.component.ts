@@ -13,6 +13,7 @@ import { ProjectCreateDto } from '../../interfaces/project-create-dto';
 export class ProjectsComponent implements OnInit {
   showAddProjectModal: boolean = false;
   isProjects: boolean = false;
+  // isLoading: boolean = false;
   projects: any[] = [];
   groupId!: string | null;
   constructor(
@@ -31,13 +32,16 @@ export class ProjectsComponent implements OnInit {
   }
 
   fetchProjects(groupId: string): void {
+    // this.isLoading = true;
     this.projectService.getProjects(groupId).subscribe(
       (projects) => {
         this.projects = JSON.parse(projects);
-
+        // this.isLoading = false;
         console.log(projects);
       },
       (err) => {
+        // this.isLoading = false;-
+
         console.error(err);
       }
     );

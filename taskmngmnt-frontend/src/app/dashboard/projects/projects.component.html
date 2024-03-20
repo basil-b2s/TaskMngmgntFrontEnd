@@ -3,7 +3,7 @@
   <button class="add-project-btn" (click)="openAddProjectModal()">
     Add Project
   </button>
-  <table class="project-table">
+  <table class="project-table" *ngIf="projects.length > 0">
     <thead>
       <tr>
         <th>Project ID</th>
@@ -15,7 +15,18 @@
     <tbody>
       <tr *ngFor="let project of projects">
         <td>{{ project.projectId }}</td>
-        <td>{{ project.projectName }}</td>
+        <td>
+          <a
+            [routerLink]="[
+              '/groups',
+              groupId,
+              'projects',
+              project.projectId,
+              'tasks'
+            ]"
+            >{{ project.projectName }}</a
+          >
+        </td>
         <td>{{ project.projectDescription }}</td>
         <td>{{ project.ownerId }}</td>
       </tr>

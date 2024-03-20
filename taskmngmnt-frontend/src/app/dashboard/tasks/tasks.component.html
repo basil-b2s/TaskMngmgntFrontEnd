@@ -1,0 +1,33 @@
+<div class="tasks-container">
+  <h2>Tasks</h2>
+  <button class="add-project-btn" (click)="openAddTaskModal()">Add Task</button>
+  <table class="tasks-table">
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Task Description</th>
+        <th>Assignee</th>
+        <th>Created By</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.taskId }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.assignee }}</td>
+        <td>{{ task.createdBy }}</td>
+        <td>{{ task.dueDate }}</td>
+        <td>{{ task.currentStatus }}</td>
+        <td><button (click)="deleteTask(task.taskId)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="loading-spinner" *ngIf="loading"></div>
+<app-add-task-modal
+  *ngIf="showAddTaskModal"
+  (taskAdded)="addTask($event)"
+></app-add-task-modal>

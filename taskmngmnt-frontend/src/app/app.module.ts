@@ -21,6 +21,7 @@ import { GroupService } from './services/group.service';
 import { ProjectService } from './services/project.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CacheService } from './services/cache-service.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthService,
     GroupService,
     ProjectService,
+    CacheService
   ],
   bootstrap: [AppComponent],
 })

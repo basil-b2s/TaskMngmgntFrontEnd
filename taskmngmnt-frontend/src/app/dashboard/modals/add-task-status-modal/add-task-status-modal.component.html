@@ -1,0 +1,28 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Add Task Status</h2>
+    <button class="close-btn" (click)="onCloseModal()">Close</button>
+    <form [formGroup]="taskStatusForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="statusText">Status</label>
+        <input
+          type="text"
+          formControlName="statusText"
+          id="statusText"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="statusColor">Color</label>
+        <input
+          type="text"
+          formControlName="statusColor"
+          statusColor
+          id="statusColor"
+          class="form-control"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProjectCreateDto } from '../../../interfaces/project-create-dto';
 
 @Component({
   selector: 'app-add-project-modal',
@@ -14,19 +15,16 @@ export class AddProjectModalComponent {
     this.projectForm = this.formBuilder.group({
       projectName: [''],
       projectDescription: [''],
-      // projectName: ['', Validators.required],
-      // projectDescription: ['', Validators.required],
     });
   }
 
   onSubmit() {
     if (this.projectForm.valid) {
-      const projectData = this.projectForm.value;
+      const projectData: ProjectCreateDto = this.projectForm.value;
       console.log(projectData);
       this.projectAdded.emit(projectData);
     }
   }
-
 
   onCloseModal() {
     this.projectAdded.emit(null);

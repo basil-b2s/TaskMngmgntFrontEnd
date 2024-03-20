@@ -1,6 +1,7 @@
 <div class="groups-container">
   <h2>Groups</h2>
-
+  <div class="loading-spinner" *ngIf="loading"></div>
+  <button class="add-group-btn" (click)="openAddGroupModal()">Add Group</button>
   <table class="group-table">
     <thead>
       <tr>
@@ -9,7 +10,7 @@
         <th>Created At</th>
       </tr>
     </thead>
-    <tbody *ngIf="groups.length > 0; else loading">
+    <tbody>
       <tr *ngFor="let group of groups">
         <td>{{ group.groupId }}</td>
         <td>
@@ -22,6 +23,5 @@
     </tbody>
   </table>
 </div>
-<ng-template #loading>
-  <p>Loading group details...</p>
-</ng-template>
+<app-add-group-modal *ngIf="showAddGroupModal" (groupAdded)="addGroup($event)">
+</app-add-group-modal>

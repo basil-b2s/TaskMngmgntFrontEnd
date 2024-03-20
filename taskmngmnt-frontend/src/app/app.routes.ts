@@ -7,6 +7,7 @@ import { GroupsComponent } from './dashboard/groups/groups.component';
 import { ProjectsComponent } from './dashboard/projects/projects.component';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginGuard } from './guard/login.guard';
+import { TasksComponent } from './dashboard/tasks/tasks.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: GroupsComponent },
       { path: ':groupId/projects', component: ProjectsComponent },
+      { path: ':groupId/projects/:projectId/tasks', component: TasksComponent },
     ],
   },
   { path: '**', redirectTo: '/login' },

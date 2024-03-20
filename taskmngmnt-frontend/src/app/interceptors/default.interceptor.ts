@@ -28,9 +28,10 @@ export class defaultInterceptor implements HttpInterceptor {
       });
       return next.handle(authReq).pipe(
         catchError((error) => {
+          // console.log(error.error);
           if (error.status === 401) {
             this.toastr.error('Unauthorized acceess');
-            this.route.navigate(['/navigate']);
+            this.route.navigate(['/groups']);
           }
           return throwError(error);
         })

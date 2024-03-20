@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { ApiCallService } from '../services/api-call.service';
 import { AuthService } from '../services/auth.service';
-import { Signup } from '../interfaces/signup';
+import { SignupDto } from '../interfaces/signupDto';
 
 @Component({
   selector: 'app-signup',
@@ -61,7 +61,7 @@ export class SignupComponent implements OnInit {
   public signup(): void {
     console.log('hiii');
     if (this.signupForm.valid) {
-      const userSignupData: Signup = this.signupForm.value;
+      const userSignupData: SignupDto = this.signupForm.value;
       this.authService.signup(userSignupData).subscribe(
         (res) => {
           console.log('Account Created Successfully', res);
